@@ -1,0 +1,9 @@
+const constants = {
+    CHANGE_TOKEN: "CHANGE_TOKEN",
+    CHANGE_CHECKED: "CHANGE_CHECKED",
+    REQUESTED: "REQUESTED",
+    CHANGE_LOGIN: "CHANGE_LOGIN",
+    CHANGE_PASSWORD: "CHANGE_PASSWORD"
+
+}
+export default constants
