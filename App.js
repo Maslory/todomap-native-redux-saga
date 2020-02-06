@@ -4,8 +4,29 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
-import {Token} from './components/reducer'
+import {Token, Checked, Login, Password} from './components/reducer'
 import initialState from './components/initialState'
+import LoginPage from './components/LoginPage'
+import createSagaMiddleware from 'redux-saga'
+import mySagas from './components/sagas'
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import MainPage from './components/MainPage'
+
+const AppNavigator = createStackNavigator(
+  {
+    Home: MainPage,
+    // Авторизация: LoginPage,
+    // Details: DetailsScreen,
+  },
+  // {
+  //   initialRouteName: 'Home',
+  // }
+);
+const AppContainer = createAppContainer(AppNavigator);
+
+
+const sagaMiddleware = createSagaMiddleware();
 
 const logger = store => next => action => {
   let result
@@ -22,34 +43,31 @@ const saver = store => next => action => {
   return result
 }
 
-
 const storeFactory = (state = initialState) =>
-  applyMiddleware(logger, saver)(createStore)(
-      combineReducers({ Token }),
+  applyMiddleware(sagaMiddleware, logger, saver)(createStore)(
+      combineReducers({ Token, Checked, Login, Password  }),
       // (localStorage['redux-store']) ?
       //     JSON.parse(localStorage['redux-store']) :
       state
   )
 
-
 const store = storeFactory()
+sagaMiddleware.run(mySagas)
 
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-      <Text>Привет</Text>
-    </View>
+      <AppContainer/>
     </Provider>
     
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });

@@ -1,9 +1,9 @@
 const initialState = {
 
     Token: '',
-    // Checked: false,
-    // Login: '',
-    // Password: ''
+    Checked: false,
+    Login: '',
+    Password: ''
         
         
 }

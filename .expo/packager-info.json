@@ -1,9 +1,9 @@
 {
+  "expoServerNgrokUrl": "https://ed-wqe.anonymous.todomap-native-redux-saga.exp.direct",
+  "packagerNgrokUrl": "https://packager.ed-wqe.anonymous.todomap-native-redux-saga.exp.direct",
+  "ngrokPid": 38748,
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 25084,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "packagerPid": 44788
 }
